@@ -7,9 +7,8 @@ public class Item
     public string Name { get; set; }
     public double Price { get; set; }
 
-    public Item(int itemId, string name, double price)
+    public Item(string name, double price)
     {
-        ItemId = itemId;
         Name = name;
         Price = price;
     }
