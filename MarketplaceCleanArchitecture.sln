@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Domain", "Marke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Application", "Marketplace.Application\Marketplace.Application.csproj", "{CCB8AB4A-A291-406F-85BC-BAD7BD79EF60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mraketplace.Presention", "Mraketplace.Presention\Mraketplace.Presention.csproj", "{CA08F0ED-B6A5-461B-9A44-228C6577D8F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Presentation", "Marketplace.Presentation\Marketplace.Presentation.csproj", "{CA08F0ED-B6A5-461B-9A44-228C6577D8F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Infrastructure", "Marketplace.Infrastructure\Marketplace.Infrastructure.csproj", "{9E346FD4-117A-4497-822A-A975AEFA3B96}"
 EndProject

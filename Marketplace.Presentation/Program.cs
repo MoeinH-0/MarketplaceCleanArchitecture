@@ -1,10 +1,16 @@
 using Marketplace.Application.Interfaces;
 using Marketplace.Infrustructure.Services;
+using Microsoft.EntityFrameworkCore;
 using Service;
 using Service.Interfaces.Repsitoreis;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<DatabaseManager>(options =>
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<UserService>();

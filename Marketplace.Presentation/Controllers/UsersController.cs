@@ -40,4 +40,11 @@ public class UsersController : ControllerBase
     }
 
 
+    [HttpGet("get-items")]
+    public List<Item> GetItems()
+    {
+        return _userService.GetItemsOfUser();
+    }
+
+
 }
