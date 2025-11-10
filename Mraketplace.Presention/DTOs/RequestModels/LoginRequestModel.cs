@@ -2,7 +2,6 @@
 
 public class LoginRequestModel
 {
-    private string username;
-    private string password;
-    
+    public string Username { set; get; }
+    public string Password { set; get; }
 }

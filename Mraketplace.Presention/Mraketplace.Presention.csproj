@@ -16,6 +16,10 @@
       <ProjectReference Include="..\Marketplace.Infrastructure\Marketplace.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DTOs\ResponseModels\" />
+    </ItemGroup>
+
 
 
 

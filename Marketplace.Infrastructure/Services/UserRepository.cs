@@ -4,23 +4,56 @@ namespace Marketplace.Infrustructure.Services;
 
 public class UserRepository : IUserRepository
 {
+    private readonly DatabaseManager _db = new DatabaseManager();
     public bool AddUserToDataBase(User user)
     {
-        throw new NotImplementedException();
+        if (_db.Users.FirstOrDefault(u => u.Username == user.Username) != null)
+            return false;
+        
+        _db.Users.Add(user);
+        _db.CurrentUserId = user.UserId;
+        _db.SaveChanges();
+        return true;
     }
 
     public bool LoginUser(string username, string password)
     {
-        throw new NotImplementedException();
+        if (_db.Users.FirstOrDefault(u => u.Username == username && u.Password == password) == null)
+            return false;
+        
+        _db.CurrentUserId = _db.Users.First(u => u.Username == username && u.Password == password).UserId;
+        return true;
     }
 
-    public bool BuyItem(int itemId, int userId)
+    public bool BuyItem(int itemId)
     {
-        throw new NotImplementedException();
+        var user = _db.Users.FirstOrDefault(u => u.UserId == _db.CurrentUserId);
+        var item = _db.Items.FirstOrDefault(i => i.ItemId == itemId);
+        if (user == null || item == null)
+            return false;
+
+        if (user.Balance < item.Price)
+            return false;
+        
+        user.Balance -= item.Price;
+        
+        user.Items.Add(item);
+        _db.SaveChanges();
+        return true;
+    }
+
+    public void IncreaseBalance(double amount)
+    {
+        var user = _db.Users.FirstOrDefault(u => u.UserId == _db.CurrentUserId);
+        if (user != null)
+        {
+            user.Balance += amount;
+        }
+        _db.SaveChanges();
     }
 
     public List<Item> GetItemsOfUser()
     {
-        throw new NotImplementedException();
+        return _db.Users.FirstOrDefault(u => u.UserId == _db.CurrentUserId)?.Items;
     }
 }

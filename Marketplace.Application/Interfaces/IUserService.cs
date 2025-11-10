@@ -7,7 +7,10 @@ public interface IUserService
     
     public bool SinUp(string username, string password);
     
-    bool BuyItem(int itemId, int userId);
+    bool BuyItem(int itemId);
     
     List<Item> GetItemsOfUser();
+    
+    void IncreaseBalance(double amount);
+    
 }

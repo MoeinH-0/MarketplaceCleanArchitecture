@@ -35,13 +35,18 @@ public class UserService : IUserService
         return false;
     }
 
-    public bool BuyItem(int itemId, int userId)
+    public bool BuyItem(int itemId)
     {
-        return _userRepository.BuyItem(itemId, userId);
+        return _userRepository.BuyItem(itemId);
     }
     
     public List<Item> GetItemsOfUser()
     {
         return _userRepository.GetItemsOfUser();
+    }
+
+    public void IncreaseBalance(double amount)
+    {
+        _userRepository.IncreaseBalance(amount);
     }
 }

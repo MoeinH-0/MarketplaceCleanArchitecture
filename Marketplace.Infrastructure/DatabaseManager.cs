@@ -6,8 +6,8 @@ public class DatabaseManager :DbContext
 {
 
     public DbSet<User> Users { get; set; }
-    public DbSet<Item> Items { get; set; }
-    protected int CurrentUserId { get; set; }
+    public DbSet<Item?> Items { get; set; }
+    public int CurrentUserId { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
