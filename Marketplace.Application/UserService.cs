@@ -15,22 +15,22 @@ public class UserService : IUserService
     
     public bool Login(string username, string password)
     {
-        if (Regex.IsMatch(username, @"^[A-Za-z0-9_]{3,30}$")
-            && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"))
-        {
+        // if (Regex.IsMatch(username, @"^[A-Za-z0-9_]{3,30}$")
+            // && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"))
+        // {
             return _userRepository.LoginUser(username, password);
-        }
+        // }
 
         return false;
     }
 
     public bool SinUp(string username, string password)
     {
-        if (Regex.IsMatch(username, @"^[A-Za-z0-9_]{3,30}$")
-            && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"))
-        {
+        // if (Regex.IsMatch(username, @"^[A-Za-z0-9_]{3,30}$")
+            // && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"))
+        // {
             return _userRepository.AddUserToDataBase(new User(username, password));
-        }
+        // }
 
         return false;
     }
@@ -45,8 +45,16 @@ public class UserService : IUserService
         return _userRepository.GetItemsOfUser();
     }
 
-    public void IncreaseBalance(double amount)
+    public double GetBalance()
     {
+        return _userRepository.GetBalance();
+    }
+
+    public bool IncreaseBalance(double amount)
+    {
+        if (amount < 0)
+            return false;
         _userRepository.IncreaseBalance(amount);
+        return true;
     }
 }

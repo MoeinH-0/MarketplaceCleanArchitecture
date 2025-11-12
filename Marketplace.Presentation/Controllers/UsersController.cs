@@ -8,35 +8,53 @@ namespace Mraketplace.Presention.Controllers;
 [Route("user-apis")]
 public class UsersController : ControllerBase
 {
-    UserService _userService;
+    IUserService _userService;
 
-    public UsersController(UserService userService)
+    public UsersController(IUserService userService)
     {
         _userService = userService;
     }
 
     [HttpPost("login")]
-    public bool LoginUser([FromBody] LoginRequestModel loginRequest)
+    public IActionResult LoginUser([FromBody] LoginRequestModel loginRequest)
     {
-        return _userService.Login(loginRequest.Username, loginRequest.Password);
+        bool res = _userService.Login(loginRequest.Username, loginRequest.Password);
+        if (res)
+            return Ok();
+        return BadRequest("Username or password is incorrect");
     }
 
     [HttpPost("register")]
-    public bool RegisterUser([FromBody] LoginRequestModel loginRequest)
+    public IActionResult RegisterUser([FromBody] LoginRequestModel loginRequest)
     {
-        return _userService.SinUp(loginRequest.Username, loginRequest.Password);
+         bool res = _userService.SinUp(loginRequest.Username, loginRequest.Password);
+         if (res)
+             return Ok();
+         return BadRequest("Username already exists.");
     }
 
     [HttpPut("increase")]
-    public void IncreaseBalance([FromBody] IncreaseBalanceRequestModel increaseBalanceRequest)
+    public IActionResult IncreaseBalance([FromBody] IncreaseBalanceRequestModel increaseBalanceRequest)
     {
-        _userService.IncreaseBalance(increaseBalanceRequest.Amount);
+        bool res = _userService.IncreaseBalance(increaseBalanceRequest.Amount);
+        if (res)
+            return Ok();
+        return BadRequest("Amount annot be a negative number.");
     }
 
     [HttpPost("buy-item/{itemId}")]
-    public void BuyItem([FromRoute] int itemId)
+    public IActionResult BuyItem([FromRoute] int itemId)
     {
-        _userService.BuyItem(itemId);
+        bool res = _userService.BuyItem(itemId);
+        if (res)
+            return Ok();
+        return BadRequest("The price of the item is more than the account balance.");
+    }
+
+    [HttpGet("get-balance")]
+    public double GetBalance()
+    {
+        return _userService.GetBalance();
     }
 
 

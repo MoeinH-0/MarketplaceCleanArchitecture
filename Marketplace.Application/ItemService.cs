@@ -11,17 +11,18 @@ public class ItemService : IItemService
         _itemRepository = itemRepository;
     }
     
-    public void AddItem(string name, double price)
+    public bool AddItem(string name, double price)
     {
         if (price < 0)
-            return;
+            return false;
         
         _itemRepository.AddItem(new Item(name, price));
+        return true;
     }
 
-    public void RemoveItem(int id)
+    public bool RemoveItem(int id)
     {
-        _itemRepository.RemoveItem(id);
+        return _itemRepository.RemoveItem(id);
     }
 
     public List<Item> GetAllItems()

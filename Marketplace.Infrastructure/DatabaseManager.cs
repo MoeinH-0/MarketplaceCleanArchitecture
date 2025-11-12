@@ -6,13 +6,12 @@ public class DatabaseManager :DbContext
 {
 
     public DbSet<User> Users { get; set; }
-    public DbSet<Item?> Items { get; set; }
-    public int CurrentUserId { get; set; }
+    public DbSet<Item> Items { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         
-        optionsBuilder.UseNpgsql("Host=localhost;Database=market;Username=postgres;Password=root");
+        optionsBuilder.UseNpgsql("Host=localhost;Database=market;Username=postgres;Password=1111");
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

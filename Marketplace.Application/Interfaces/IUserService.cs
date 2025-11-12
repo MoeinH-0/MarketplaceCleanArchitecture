@@ -11,6 +11,8 @@ public interface IUserService
     
     List<Item> GetItemsOfUser();
     
-    void IncreaseBalance(double amount);
+    double GetBalance();
+    
+    bool IncreaseBalance(double amount);
     
 }

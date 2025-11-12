@@ -17,7 +17,7 @@ public class User
     public double Balance { set; get; }
     
 
-    public List<Item> Items { get; set; } = new();
+    public List<Item> Items { get; set; } = new List<Item>();
     
 
 }

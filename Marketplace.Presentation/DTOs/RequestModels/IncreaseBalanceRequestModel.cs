@@ -1,6 +1,6 @@
 ﻿namespace Mraketplace.Presention.DTOs.RequestModels;
 
-public class IncreaseBalanceRequestModel
+public class IncreaseBalanceRequestModel(double amount)
 {
-    public double Amount { get; set; }
+    public double Amount { get; set; } = amount;
 }

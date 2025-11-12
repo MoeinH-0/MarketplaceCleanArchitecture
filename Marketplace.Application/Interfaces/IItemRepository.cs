@@ -3,6 +3,6 @@
 public interface IItemRepository
 {
     void AddItem(Item item);
-    void RemoveItem(int id);
+    bool RemoveItem(int id);
     List<Item> GetAllItems();
 }

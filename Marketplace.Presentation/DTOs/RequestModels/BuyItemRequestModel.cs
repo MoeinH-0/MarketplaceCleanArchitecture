@@ -1,6 +1,6 @@
 ﻿namespace Mraketplace.Presention.DTOs.RequestModels;
 
-public class BuyItemRequestModel
+public class BuyItemRequestModel(int itemId)
 {
-    public int ItemId { get; set; }
+    public int ItemId { get; set; } =  itemId;
 }

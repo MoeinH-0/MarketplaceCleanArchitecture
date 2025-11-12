@@ -8,24 +8,30 @@ namespace Mraketplace.Presention.Controllers;
 [Route("item-apis")]
 public class ItemController : ControllerBase
 {
-    ItemService _itemService;
+    IItemService _itemService;
 
-    public ItemController(ItemService itemService)
+    public ItemController(IItemService itemService)
     {
         _itemService = itemService;
     }
-
+    
 
     [HttpPost("add-item")]
-    public void AddItem([FromBody] AddItemRequestModel request)
+    public IActionResult AddItem([FromBody] AddItemRequestModel request)
     {
-        _itemService.AddItem(request.Name, request.Price);
+        bool res = _itemService.AddItem(request.Name, request.Price);
+        if (res)
+            return Ok();
+        return BadRequest("Price cannot be a negative number.");
     }
 
     [HttpDelete("remove-item/{itemId}")]
-    public void RemoveItem(int itemId)
+    public IActionResult RemoveItem(int itemId)
     {
-        _itemService.RemoveItem(itemId);
+        bool res = _itemService.RemoveItem(itemId);
+        if (res)
+            return Ok();
+        return BadRequest("Item not found.");
     }
 
 

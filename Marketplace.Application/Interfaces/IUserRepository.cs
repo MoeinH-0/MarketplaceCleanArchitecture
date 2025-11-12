@@ -9,5 +9,7 @@ public interface IUserRepository
     
     void IncreaseBalance(double amount);
     
+    double GetBalance();
+    
     List<Item> GetItemsOfUser();
 }
